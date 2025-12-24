@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home - Bootstrap Website</title>
+    <!-- Bootstrap 5 CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Bootstrap Icons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3 text-primary" href="/">
+                <i class="bi bi-rocket-takeoff-fill me-2"></i>
+                BootstrapSite
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active fw-bold text-primary" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                </ul>
+                <a href="/contact" class="btn btn-primary ms-lg-3 mt-2 mt-lg-0">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="bg-primary text-white py-5">
+        <div class="container py-5">
+            <div class="row align-items-center">
+                <div class="col-lg-6">
+                    <h1 class="display-4 fw-bold mb-4">Welcome to Our Bootstrap Website</h1>
+                    <p class="lead mb-4">We create amazing websites using Bootstrap 5. No custom CSS needed for beautiful, responsive designs.</p>
+                    <div class="d-flex flex-wrap gap-3">
+                        <a href="#features" class="btn btn-light btn-lg px-4">Explore Features</a>
+                        <a href="contact.html" class="btn btn-outline-light btn-lg px-4">Contact Us</a>
+                    </div>
+                </div>
+                <div class="col-lg-6 mt-5 mt-lg-0">
+                    <img src="https://images.unsplash.com/photo-1551288049-bebda4e38f71?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                         class="img-fluid rounded shadow-lg" alt="Hero Image">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section id="features" class="py-5">
+        <div class="container py-5">
+            <div class="row mb-5">
+                <div class="col-12 text-center">
+                    <h2 class="fw-bold display-5 mb-3">Why Choose Bootstrap</h2>
+                    <p class="lead text-muted">Build responsive websites quickly with these features</p>
+                </div>
+            </div>
+            <div class="row g-4">
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="text-primary mb-3">
+                                <i class="bi bi-phone fs-1"></i>
+                            </div>
+                            <h4 class="card-title fw-bold">Mobile First</h4>
+                            <p class="card-text">Bootstrap is mobile-first, ensuring your site looks great on all devices.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="text-primary mb-3">
+                                <i class="bi bi-lightning-charge fs-1"></i>
+                            </div>
+                            <h4 class="card-title fw-bold">Fast Development</h4>
+                            <p class="card-text">Pre-built components help you create websites quickly and efficiently.</p>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-md-4">
+                    <div class="card h-100 border-0 shadow-sm">
+                        <div class="card-body text-center p-4">
+                            <div class="text-primary mb-3">
+                                <i class="bi bi-palette fs-1"></i>
+                            </div>
+                            <h4 class="card-title fw-bold">Customizable</h4>
+                            <p class="card-text">Easily customize colors, spacing, and components to match your brand.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Section -->
+    <section class="bg-light py-5">
+        <div class="container py-5">
+            <div class="row text-center">
+                <div class="col-lg-8 mx-auto">
+                    <h2 class="fw-bold display-6 mb-4">Ready to Start Your Project?</h2>
+                    <p class="lead mb-4">Join thousands of satisfied customers who've built amazing websites with Bootstrap.</p>
+                    <a href="contact.html" class="btn btn-primary btn-lg px-5">Get In Touch</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+  <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4 class="fw-bold mb-4">
+                        <i class="bi bi-rocket-takeoff-fill me-2"></i>BootstrapSite
+                    </h4>
+                    <p class="">Building beautiful websites with Bootstrap 5. No custom CSS required.</p>
+                    <div class="mt-4">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-5"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-linkedin fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="fw-bold mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class=" text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="services.html" class="text-decoration-none">Services</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-decoration-none">About</a></li>
+                        <li class="mb-2"><a href="portfolio.html" class="text-decoration-none">Portfolio</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="fw-bold mb-4">Services</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="services.html" class="text-decoration-none">Web Development</a></li>
+                        <li class="mb-2"><a href="services.html" class="text-decoration-none">Mobile Apps</a></li>
+                        <li class="mb-2"><a href="services.html" class="text-decoration-none">UI/UX Design</a></li>
+                        <li class="mb-2"><a href="services.html" class="text-decoration-none">Consulting</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h5 class="fw-bold mb-4">Contact Info</h5>
+                    <p class="mb-2"><i class="bi bi-geo-alt me-2"></i> 123 Street, City, Country</p>
+                    <p class="mb-2"><i class="bi bi-telephone me-2"></i> +1 234 567 8900</p>
+                    <p class=""><i class="bi bi-envelope me-2"></i> info@bootstrapsite.com</p>
+                </div>
+            </div>
+            <hr class="my-4 ">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class=" mb-0">&copy; 2023 BootstrapSite. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class=" mb-0">
+                        <a href="#" class=" text-decoration-none me-3">Privacy Policy</a>
+                        <a href="#" class="text-decoration-none">Terms of Service</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Bootstrap JS Bundle -->
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>

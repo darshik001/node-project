@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Blog - Bootstrap Website</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.8.1/font/bootstrap-icons.css">
+</head>
+<body>
+    <!-- Navigation Bar -->
+    <nav class="navbar navbar-expand-lg navbar-light bg-white sticky-top shadow-sm">
+        <div class="container">
+            <a class="navbar-brand fw-bold fs-3 text-primary" href="/">
+                <i class="bi bi-rocket-takeoff-fill me-2"></i>
+                BootstrapSite
+            </a>
+            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav ms-auto">
+                    <li class="nav-item">
+                        <a class="nav-link active fw-bold text-primary" href="/">Home</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/services">Services</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/about">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/blog">Blog</a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="/contact">Contact</a>
+                    </li>
+                </ul>
+                <a href="/contact" class="btn btn-primary ms-lg-3 mt-2 mt-lg-0">Get Started</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Page Header -->
+    <section class="bg-primary text-white py-5">
+        <div class="container py-5">
+            <div class="row">
+                <div class="col-12 text-center">
+                    <h1 class="display-4 fw-bold mb-3">Our Blog</h1>
+                    <p class="lead mb-0">Latest news, tips, and tutorials</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Blog Content -->
+    <section class="py-5">
+        <div class="container py-5">
+            <div class="row g-5">
+                <!-- Main Content -->
+                <div class="col-lg-8">
+                    <!-- Featured Post -->
+                    <div class="card border-0 shadow-sm mb-5">
+                        <img src="https://images.unsplash.com/photo-1555066931-4365d14bab8c?ixlib=rb-1.2.1&auto=format&fit=crop&w=800&q=80" 
+                             class="card-img-top" alt="Featured Post">
+                        <div class="card-body p-5">
+                            <span class="badge bg-primary mb-3">Featured</span>
+                            <h2 class="fw-bold mb-3">Getting Started with Bootstrap 5</h2>
+                            <div class="d-flex align-items-center mb-4">
+                                <img src="https://randomuser.me/api/portraits/men/32.jpg" 
+                                     class="rounded-circle me-3" width="40" alt="Author">
+                                <div>
+                                    <p class="fw-bold mb-0">John Smith</p>
+                                    <p class="text-muted mb-0 small">March 15, 2023 • 5 min read</p>
+                                </div>
+                            </div>
+                            <p class="card-text lead mb-4">Bootstrap 5 brings exciting new features and improvements. In this comprehensive guide, we'll explore how to get started with the latest version of the world's most popular CSS framework.</p>
+                            <a href="#" class="btn btn-primary">Read More</a>
+                        </div>
+                    </div>
+
+                    <!-- Blog Posts Grid -->
+                    <div class="row g-4">
+                        <!-- Post 1 -->
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <img src="https://images.unsplash.com/photo-1551650975-87deedd944c3?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                                     class="card-img-top" alt="Post 1">
+                                <div class="card-body p-4">
+                                    <span class="badge bg-primary mb-3">Web Development</span>
+                                    <h5 class="card-title fw-bold mb-3">Responsive Design Best Practices</h5>
+                                    <p class="card-text text-muted">Learn the essential best practices for creating responsive websites that work perfectly on all devices.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-4">
+                                        <small class="text-muted">March 10, 2023</small>
+                                        <a href="#" class="text-primary text-decoration-none">Read →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Post 2 -->
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <img src="https://images.unsplash.com/photo-1512941937669-90a1b58e7e9c?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                                     class="card-img-top" alt="Post 2">
+                                <div class="card-body p-4">
+                                    <span class="badge bg-primary mb-3">Mobile Apps</span>
+                                    <h5 class="card-title fw-bold mb-3">Building Mobile Apps with Bootstrap</h5>
+                                    <p class="card-text text-muted">Discover how to use Bootstrap to create mobile-friendly web applications that feel native.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-4">
+                                        <small class="text-muted">March 5, 2023</small>
+                                        <a href="#" class="text-primary text-decoration-none">Read →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Post 3 -->
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <img src="https://images.unsplash.com/photo-1460925895917-afdab827c52f?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                                     class="card-img-top" alt="Post 3">
+                                <div class="card-body p-4">
+                                    <span class="badge bg-primary mb-3">UI/UX Design</span>
+                                    <h5 class="card-title fw-bold mb-3">Modern UI Design Trends 2023</h5>
+                                    <p class="card-text text-muted">Explore the latest UI design trends and how to implement them using Bootstrap components.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-4">
+                                        <small class="text-muted">February 28, 2023</small>
+                                        <a href="#" class="text-primary text-decoration-none">Read →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Post 4 -->
+                        <div class="col-md-6">
+                            <div class="card border-0 shadow-sm h-100">
+                                <img src="https://images.unsplash.com/photo-1559028012-481c04fa702d?ixlib=rb-1.2.1&auto=format&fit=crop&w=600&q=80" 
+                                     class="card-img-top" alt="Post 4">
+                                <div class="card-body p-4">
+                                    <span class="badge bg-primary mb-3">Performance</span>
+                                    <h5 class="card-title fw-bold mb-3">Optimizing Bootstrap Performance</h5>
+                                    <p class="card-text text-muted">Tips and techniques for optimizing Bootstrap websites for maximum performance and speed.</p>
+                                    <div class="d-flex justify-content-between align-items-center mt-4">
+                                        <small class="text-muted">February 20, 2023</small>
+                                        <a href="#" class="text-primary text-decoration-none">Read →</a>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Pagination -->
+                    <nav aria-label="Page navigation" class="mt-5">
+                        <ul class="pagination justify-content-center">
+                            <li class="page-item disabled">
+                                <a class="page-link" href="#" tabindex="-1">Previous</a>
+                            </li>
+                            <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item">
+                                <a class="page-link" href="#">Next</a>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+
+                <!-- Sidebar -->
+                <div class="col-lg-4">
+                    <!-- Search -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-4">Search</h5>
+                            <div class="input-group">
+                                <input type="text" class="form-control" placeholder="Search articles...">
+                                <button class="btn btn-primary" type="button">
+                                    <i class="bi bi-search"></i>
+                                </button>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Categories -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-4">Categories</h5>
+                            <ul class="list-unstyled">
+                                <li class="mb-3">
+                                    <a href="#" class="text-decoration-none d-flex justify-content-between">
+                                        <span>Web Development</span>
+                                        <span class="badge bg-primary">12</span>
+                                    </a>
+                                </li>
+                                <li class="mb-3">
+                                    <a href="#" class="text-decoration-none d-flex justify-content-between">
+                                        <span>Mobile Apps</span>
+                                        <span class="badge bg-primary">8</span>
+                                    </a>
+                                </li>
+                                <li class="mb-3">
+                                    <a href="#" class="text-decoration-none d-flex justify-content-between">
+                                        <span>UI/UX Design</span>
+                                        <span class="badge bg-primary">15</span>
+                                    </a>
+                                </li>
+                                <li class="mb-3">
+                                    <a href="#" class="text-decoration-none d-flex justify-content-between">
+                                        <span>Performance</span>
+                                        <span class="badge bg-primary">6</span>
+                                    </a>
+                                </li>
+                                <li>
+                                    <a href="#" class="text-decoration-none d-flex justify-content-between">
+                                        <span>Tutorials</span>
+                                        <span class="badge bg-primary">10</span>
+                                    </a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Recent Posts -->
+                    <div class="card border-0 shadow-sm mb-4">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-4">Recent Posts</h5>
+                            <div class="mb-4">
+                                <a href="#" class="text-decoration-none">
+                                    <h6 class="fw-bold">Getting Started with Bootstrap 5</h6>
+                                </a>
+                                <small class="text-muted">March 15, 2023</small>
+                            </div>
+                            <div class="mb-4">
+                                <a href="#" class="text-decoration-none">
+                                    <h6 class="fw-bold">Responsive Design Best Practices</h6>
+                                </a>
+                                <small class="text-muted">March 10, 2023</small>
+                            </div>
+                            <div class="mb-4">
+                                <a href="#" class="text-decoration-none">
+                                    <h6 class="fw-bold">Building Mobile Apps with Bootstrap</h6>
+                                </a>
+                                <small class="text-muted">March 5, 2023</small>
+                            </div>
+                            <div>
+                                <a href="#" class="text-decoration-none">
+                                    <h6 class="fw-bold">Modern UI Design Trends 2023</h6>
+                                </a>
+                                <small class="text-muted">February 28, 2023</small>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Newsletter -->
+                    <div class="card border-0 shadow-sm">
+                        <div class="card-body p-4">
+                            <h5 class="fw-bold mb-4">Newsletter</h5>
+                            <p class="text-muted mb-4">Subscribe to our newsletter to get the latest updates and articles.</p>
+                            <div class="input-group mb-3">
+                                <input type="email" class="form-control" placeholder="Your email">
+                                <button class="btn btn-primary" type="button">Subscribe</button>
+                            </div>
+                            <small class="text-muted">We'll never share your email with anyone else.</small>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer (Same as Home Page) -->
+    <footer class="bg-dark text-white py-5">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-4 mb-4">
+                    <h4 class="fw-bold mb-4">
+                        <i class="bi bi-rocket-takeoff-fill me-2"></i>BootstrapSite
+                    </h4>
+                    <p class="">Building beautiful websites with Bootstrap 5. No custom CSS required.</p>
+                    <div class="mt-4">
+                        <a href="#" class="text-white me-3"><i class="bi bi-facebook fs-5"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-twitter fs-5"></i></a>
+                        <a href="#" class="text-white me-3"><i class="bi bi-instagram fs-5"></i></a>
+                        <a href="#" class="text-white"><i class="bi bi-linkedin fs-5"></i></a>
+                    </div>
+                </div>
+                <div class="col-lg-2 col-md-6 mb-4">
+                    <h5 class="fw-bold mb-4">Quick Links</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="index.html" class=" text-decoration-none">Home</a></li>
+                        <li class="mb-2"><a href="services.html" class="text-decoration-none">Services</a></li>
+                        <li class="mb-2"><a href="about.html" class="text-decoration-none">About</a></li>
+                        <li class="mb-2"><a href="portfolio.html" class="text-decoration-none">Portfolio</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 col-md-6 mb-4">
+                    <h5 class="fw-bold mb-4">Services</h5>
+                    <ul class="list-unstyled">
+                        <li class="mb-2"><a href="services.html" class="text-decoration-none">Web Development</a></li>
+                        <li class="mb-2"><a href="services.html" class="text-decoration-none">Mobile Apps</a></li>
+                        <li class="mb-2"><a href="services.html" class="text-decoration-none">UI/UX Design</a></li>
+                        <li class="mb-2"><a href="services.html" class="text-decoration-none">Consulting</a></li>
+                    </ul>
+                </div>
+                <div class="col-lg-3 mb-4">
+                    <h5 class="fw-bold mb-4">Contact Info</h5>
+                    <p class="mb-2"><i class="bi bi-geo-alt me-2"></i> 123 Street, City, Country</p>
+                    <p class="mb-2"><i class="bi bi-telephone me-2"></i> +1 234 567 8900</p>
+                    <p class=""><i class="bi bi-envelope me-2"></i> info@bootstrapsite.com</p>
+                </div>
+            </div>
+            <hr class="my-4 ">
+            <div class="row">
+                <div class="col-md-6 text-center text-md-start">
+                    <p class=" mb-0">&copy; 2023 BootstrapSite. All rights reserved.</p>
+                </div>
+                <div class="col-md-6 text-center text-md-end">
+                    <p class=" mb-0">
+                        <a href="#" class=" text-decoration-none me-3">Privacy Policy</a>
+                        <a href="#" class="text-decoration-none">Terms of Service</a>
+                    </p>
+                </div>
+            </div>
+        </div>
+    </footer>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0-alpha1/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
