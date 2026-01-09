@@ -1,6 +1,5 @@
 const mongoose = require('mongoose')
 
-
 const bookSchema = mongoose.Schema({
     title:{
         type:String
@@ -12,6 +11,9 @@ const bookSchema = mongoose.Schema({
         type:String
     },
     price:{
+        type:String
+    },
+    bookImage:{
         type:String
     }
 })

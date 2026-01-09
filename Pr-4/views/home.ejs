@@ -2,67 +2,178 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8">
-  <title>Book Management - Home</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Management System</title>
   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
+  <style>
+    .book-card {
+      transition: transform 0.3s ease, box-shadow 0.3s ease;
+    }
+    .book-card:hover {
+      transform: translateY(-5px);
+    }
+    .category-badge {
+      font-size: 0.75rem;
+      padding: 0.35rem 0.65rem;
+    }
+    .navbar-brand {
+      font-weight: 700;
+      font-size: 1.5rem;
+    }
+    .hero-section {
+      background: linear-gradient(135deg, #667eea 0%, #764ba2 100%);
+      border-radius: 0 0 2rem 2rem;
+      padding: 4rem 0;
+      margin-bottom: 3rem;
+    }
+    .table-container {
+      border-radius: 1rem;
+      overflow: hidden;
+    }
+    .book-image {
+      border-radius: 0.5rem;
+      object-fit: cover;
+    }
+    .form-card {
+      border-radius: 1rem;
+      overflow: hidden;
+      border: none;
+    }
+    .action-buttons .btn {
+      min-width: 80px;
+    }
+    
+  </style>
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark sticky-top shadow">
+    <div class="container">
+      <a class="navbar-brand d-flex align-items-center" href="/">
+        <i class="bi bi-book-half me-2"></i>
+        Book Manager Pro
+      </a>
+      <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
+        <span class="navbar-toggler-icon"></span>
+      </button>
+      <div class="collapse navbar-collapse" id="navbarNav">
+        <ul class="navbar-nav ms-auto">
+          <li class="nav-item">
+            <a class="nav-link active" href="/">
+              <i class="bi bi-house-door me-1"></i> Home
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="/addbooks">
+              <i class="bi bi-plus-circle me-1"></i> Add Book
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="bi bi-collection me-1"></i> Categories
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">
+              <i class="bi bi-bar-chart me-1"></i> Reports
+            </a>
+          </li>
+        </ul>
+      </div>
+    </div>
+  </nav>
 
-<!-- Navbar -->
-<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
-  <div class="container">
-    <a class="navbar-brand" href="/">Book Manager</a>
-    <div>
-      <a href="/" class="btn btn-outline-light btn-sm me-2">Home</a>
-      <a href="/addbooks" class="btn btn-outline-light btn-sm">Add Book</a>
+  <div class="container-fluid px-0">
+    <div class="hero-section text-white text-center">
+      <div class="container">
+        <h1 class="display-5 fw-bold mb-3">Manage Your Book Collection</h1>
+        <p class="lead mb-4">Organize, track, and explore your personal library with our intuitive book management system.</p>
+        <a href="/addbooks" class="btn btn-light btn-lg px-4">
+          <i class="bi bi-plus-circle me-2"></i> Add New Book
+        </a>
+      </div>
+    </div>
+    
+   
+
+    <div class="container mb-5">
+      <div class="d-flex justify-content-between align-items-center mb-4">
+        <h3 class="fw-bold">Book Collection</h3>
+     
+      </div>
+      
+      <div class="table-container card shadow">
+        <div class="card-body p-0">
+          <div class="table-responsive">
+            <table class="table table-hover mb-0">
+              <thead class="table-dark">
+                <tr>
+                  <th class="text-center">#</th>
+                  <th class="text-center">Cover</th>
+                  <th>Book Title</th>
+                  <th>Author</th>
+                  <th>Category</th>
+                  <th class="text-end">Price</th>
+                  <th class="text-center">Actions</th>
+                </tr>
+              </thead>
+              <tbody>
+              
+                
+                <%books.forEach((book,i)=>{%>
+ <tr class="align-middle">
+                  <td class="text-center fw-bold"><%= i+1%></td>
+                  <td class="text-center">
+                    <img src="<%=book.bookImage%>" 
+                         class="book-image" width="60" height="80" alt="Book Cover">
+                  </td>
+                  <td>
+                    <div class="fw-bold"><%=book.title%></div>
+                  </td>
+                  <td><%=book.author%></td>
+                  <td>
+                    <span class="badge bg-primary category-badge"><%=book.category%></span>
+                  </td>
+                  <td class="text-end fw-bold">$<%=book.price%></td>
+                  <td class="text-center action-buttons">
+                    <a href="/edit-book/<%=book.id%>" class="btn btn-sm btn-outline-primary me-1">
+                      <i class="bi bi-pencil"></i>
+                    </a>
+                    <a href="/delete-book/<%=book.id%>" class="btn btn-sm btn-outline-danger">
+                      <i class="bi bi-trash"></i>
+                    </a>
+                  </td>
+                </tr>
+                <%})%>
+            
+              </tbody>
+            </table>
+          </div>
+        </div>
+       
+      </div>
     </div>
   </div>
-</nav>
 
-<!-- Content -->
-<div class="container mt-5">
-  <h3 class="mb-4">Book List</h3>
-
-  <div class="card shadow-sm">
-    <div class="card-body">
-      <table class="table table-bordered table-hover text-center">
-        <thead class="table-dark">
-          <tr>
-            <th>#</th>
-            <th>Book Name</th>
-            <th>Author</th>
-            <th>Category</th>
-            <th>Price</th>
-            <th>Action</th>
-          </tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td>1</td>
-            <td>Sample Book</td>
-            <td>John Doe</td>
-            <td>Fiction</td>
-            <td>₹299</td>
-            <td>
-              <a href="edit-book.html" class="btn btn-sm btn-primary">Edit</a>
-              <button class="btn btn-sm btn-danger">Delete</button>
-            </td>
-          </tr>
-          <tr>
-            <td>1</td>
-            <td>Sample Book</td>
-            <td>John Doe</td>
-            <td>Fiction</td>
-            <td>₹299</td>
-            <td>
-              <a href="edit-book.html" class="btn btn-sm btn-primary">Edit</a>
-              <button class="btn btn-sm btn-danger">Delete</button>
-            </td>
-          </tr>
-        </tbody>
-      </table>
+  <!-- Footer -->
+  <footer class="bg-dark text-white py-4 mt-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h5>Book Manager Pro</h5>
+          <p class="mb-0">A complete solution for managing your personal or institutional book collection.</p>
+        </div>
+        <div class="col-md-6 text-md-end">
+          <p class="mb-0">&copy; 2023 Book Manager Pro. All rights reserved.</p>
+          <p class="mb-0">
+            <a href="#" class="text-white text-decoration-none me-3">Privacy Policy</a>
+            <a href="#" class="text-white text-decoration-none">Terms of Service</a>
+          </p>
+        </div>
+      </div>
     </div>
-  </div>
-</div>
+  </footer>
 
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 </body>
 </html>
