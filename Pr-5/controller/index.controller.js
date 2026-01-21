@@ -7,7 +7,7 @@ exports.homepage = async (req, res) => {
     let sorting = req.query.sorting || "";
     let page = parseInt(req.query.page) || 1;
 
-    const limit = 8;                
+    const limit = 4;                
     const skip = (page - 1) * limit;
 
     let sortOption = {};
@@ -59,7 +59,7 @@ exports.bollywood = async(req,res)=>{
     if (sorting === "asc") sortOption = { title: 1 };
     if (sorting === "desc") sortOption = { title: -1 };
 
-    // ✅ Correct merged query
+    
     const query = {
       industry: "Bollywood",
       $or: [
@@ -189,11 +189,12 @@ exports.deletemovie = async (req, res) => {
 
 
 exports.editmoviepage = async (req, res) => {
-
+   let search = ""
+    let sorting = ""
     try {
         let id = req.params.id
         let movie = await moviemodel.findById(id)
-        res.render('editmovie', { movie })
+        res.render('editmovie', { movie ,search,sorting})
     } catch (error) {
         console.log(error)
     }
