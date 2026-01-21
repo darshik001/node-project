@@ -102,7 +102,7 @@
 
       <li class="page-item <%= currentPage === 1 ? 'disabled' : '' %>">
         <a class="page-link"
-           href="?page=<%= currentPage - 1 %>&search=<%= search %>&sorting=<%= sorting %>">
+           href="?page=<%= currentPage - 1 %>&search=<%= search %>&sorting=<%= sorting %>" style="background-color: #1a1a2e;">
           &laquo;
         </a>
       </li>
@@ -110,15 +110,16 @@
       <% for(let i = 1; i <= totalPages; i++) { %>
         <li class="page-item <%= currentPage === i ? 'active' : '' %>">
           <a class="page-link"
-             href="?page=<%= i %>&search=<%= search %>&sorting=<%= sorting %>">
+             href="?page=<%= i %>&search=<%= search %>&sorting=<%= sorting %>" style="background-color: #1a1a2e;">
             <%= i %>
           </a>
         </li>
       <% } %>
 
       <li class="page-item <%= currentPage === totalPages ? 'disabled' : '' %>">
-        <a class="page-link"
-           href="?page=<%= currentPage + 1 %>&search=<%= search %>&sorting=<%= sorting %>">
+        <a class="page-link" 
+      
+           href="?page=<%= currentPage + 1 %>&search=<%= search %>&sorting=<%= sorting %>" style="background-color: #1a1a2e;">
           &raquo;
         </a>
       </li>
