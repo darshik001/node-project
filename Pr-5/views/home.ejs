@@ -15,16 +15,19 @@
     Movies
   </h1>
   </div>
+     <% if(movies.length>0){%>
 
  <div class="col-6">
    <form action="">
+    <input type="hidden" name="search" value="<%= search %>">
     <select type="submit" name="sorting" class="form-select" onchange="this.form.submit()">
-      <option value="">sort by name</option>
-      <option value="ase">Ascending</option>
-      <option value="desc">Descending</option>
+      <option <%=sorting == ""?"selected":""%> value="">sort by name</option>
+      <option <%=sorting == "ase"?"selected":""%> value="ase">Ascending</option>
+      <option<%=sorting == "desc"?"selected":""%> value="desc">Descending</option>
     </select>
   </form>
  </div>
+<%}%>
 </div>
 
 <!-- Movies Grid -->
@@ -92,21 +95,40 @@
   </div>
   <%})%>
 
-  <nav aria-label="Page navigation example">
-  <ul class="pagination">
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Previous">
-        <span aria-hidden="true">&laquo;</span>
-      </a>
-    </li>
-    <li class="page-item active"><a class="page-link" href="#">1</a></li>
-    <li class="page-item"><a class="page-link" href="#">2</a></li>
-    <li class="page-item"><a class="page-link" href="#">3</a></li>
-    <li class="page-item">
-      <a class="page-link" href="#" aria-label="Next">
-        <span aria-hidden="true">&raquo;</span>
-      </a>
-    </li>
-  </ul>
-</nav>
+  <!-- PAGINATION -->
+     <% if(movies.length>0){%>
+       <nav class="mt-5">
+    <ul class="pagination justify-content-center">
+
+      <li class="page-item <%= currentPage === 1 ? 'disabled' : '' %>">
+        <a class="page-link"
+           href="?page=<%= currentPage - 1 %>&search=<%= search %>&sorting=<%= sorting %>">
+          &laquo;
+        </a>
+      </li>
+
+      <% for(let i = 1; i <= totalPages; i++) { %>
+        <li class="page-item <%= currentPage === i ? 'active' : '' %>">
+          <a class="page-link"
+             href="?page=<%= i %>&search=<%= search %>&sorting=<%= sorting %>">
+            <%= i %>
+          </a>
+        </li>
+      <% } %>
+
+      <li class="page-item <%= currentPage === totalPages ? 'disabled' : '' %>">
+        <a class="page-link"
+           href="?page=<%= currentPage + 1 %>&search=<%= search %>&sorting=<%= sorting %>">
+          &raquo;
+        </a>
+      </li>
+
+    </ul>
+  </nav>
+     <% } %>
+
+     <% if(movies.length==0){%>
+      <h2 class="text-center text-white">Movie Not Found</h2>
+      <%}%>
+     
 </div>

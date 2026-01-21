@@ -2,108 +2,148 @@ const path = require('path')
 const fs = require('fs')
 const moviemodel = require('../model/moves.model')
 exports.homepage = async (req, res) => {
+  try {
     let search = req.query.search || "";
-    let sorting  = req.query.sorting
+    let sorting = req.query.sorting || "";
+    let page = parseInt(req.query.page) || 1;
 
-     let sortOption = {};
+    const limit = 8;                
+    const skip = (page - 1) * limit;
 
-    if (sorting === "asc") {
-      sortOption = { title: 1 };
-    } else if (sorting === "desc") {
-      sortOption = { title: -1 };
-    }
-    const movies = await moviemodel.find( {
-            $or:[
-                {
-                    "title":{$regex:search,$options:"i"}
-                },
-                {
-                    "genre":{$regex:search,$options:"i"}
+    let sortOption = {};
+    if (sorting === "asc") sortOption = { title: 1 };
+    if (sorting === "desc") sortOption = { title: -1 };
 
-                },
-                {
-                    "director":{$regex:search,$options:"i"}
-                },
-                {
-                  "language":{$regex:search,$options:"i"}
-                },
-                {
-                    "industry":{$regex:search,$options:"i"}
-                }
-              
-            ]
-        }).sort(sortOption)
+    const query = {
+      $or: [
+        { title: { $regex: search, $options: "i" } },
+        { genre: { $regex: search, $options: "i" } },
+        { director: { $regex: search, $options: "i" } },
+        { language: { $regex: search, $options: "i" } },
+        { industry: { $regex: search, $options: "i" } }
+      ]
+    };
 
-    console.log(movies.length)
-    let limit = 5    // totla item pare page
-    let page =  parseInt(req.query.page) || 1    //page
-    let totalpage = Math.ceil(movies.length/limit) // 2
-    let skip = Math.ceil(page-1)*limit
-    console.log(skip)
-    res.render('home', { 
-        movies,
-    totalpage,
-    
-    })
-}
+    const totalMovies = await moviemodel.countDocuments(query);
+    const totalPages = Math.ceil(totalMovies / limit);
+
+    const movies = await moviemodel
+      .find(query)
+      .sort(sortOption)
+      .skip(skip)
+      .limit(limit);
+
+    res.render("home", {
+      movies,
+      search,
+      sorting,
+      currentPage: page,
+      totalPages
+    });
+
+  } catch (err) {
+    console.error(err);
+  }
+};
 
 exports.bollywood = async(req,res)=>{
+   try {
     let search = req.query.search || "";
+    let sorting = req.query.sorting || "";
+    let page = parseInt(req.query.page) || 1;
 
-    try {
-          let movies =await moviemodel.find({industry:"Bollywood",
-            
-            $or:[
-                {
-                    "title":{$regex:search,$options:"i"}
-                },
-                {
-                    "genre":{$regex:search,$options:"i"}
+    const limit = 8;
+    const skip = (page - 1) * limit;
 
-                },
-                {
-                    "director":{$regex:search,$options:"i"}
-                },
-                 {
-                    "industry":{$regex:search,$options:"i"}
-                }
-            ]
-        }
-          )   
-          res.render('home',{movies})
-    } catch (error) {
-        console.log(error)
-    }
+    let sortOption = {};
+    if (sorting === "asc") sortOption = { title: 1 };
+    if (sorting === "desc") sortOption = { title: -1 };
+
+    // ✅ Correct merged query
+    const query = {
+      industry: "Bollywood",
+      $or: [
+        { title: { $regex: search, $options: "i" } },
+        { genre: { $regex: search, $options: "i" } },
+        { director: { $regex: search, $options: "i" } },
+        { language: { $regex: search, $options: "i" } }
+      ]
+    };
+
+    const totalMovies = await moviemodel.countDocuments(query);
+    const totalPages = Math.ceil(totalMovies / limit);
+
+    const movies = await moviemodel
+      .find(query)             
+      .sort(sortOption)
+      .skip(skip)
+      .limit(limit);
+
+    res.render("home", {
+      movies,
+      search,
+      sorting,
+      currentPage: page,
+      totalPages
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
 }
 
-exports.hollywood = async(req,res)=>{
+exports.hollywood = async (req, res) => {
+  try {
     let search = req.query.search || "";
+    let sorting = req.query.sorting || "";
+    let page = parseInt(req.query.page) || 1;
 
-    try {
-          let movies =await moviemodel.find({industry:"Hollywood",
-            
-            $or:[
-                {
-                    "title":{$regex:search,$options:"i"}
-                },
-                {
-                    "genre":{$regex:search,$options:"i"}
+    const limit = 8;
+    const skip = (page - 1) * limit;
 
-                },
-                {
-                    "director":{$regex:search,$options:"i"}
-                }
-            ]
-        }
-          )   
-          res.render('home',{movies})
-    } catch (error) {
-        console.log(error)
-    }
-}
+    let sortOption = {};
+    if (sorting === "asc") sortOption = { title: 1 };
+    if (sorting === "desc") sortOption = { title: -1 };
+
+    const query = {
+      industry: "Hollywood",
+      $or: [
+        { title: { $regex: search, $options: "i" } },
+        { genre: { $regex: search, $options: "i" } },
+        { director: { $regex: search, $options: "i" } },
+        { language: { $regex: search, $options: "i" } }
+      ]
+    };
+
+    const totalMovies = await moviemodel.countDocuments(query);
+    const totalPages = Math.ceil(totalMovies / limit);
+
+    const movies = await moviemodel
+      .find(query)           
+      .sort(sortOption)
+      .skip(skip)
+      .limit(limit);
+
+    res.render("home", {
+      movies,
+      search,
+      sorting,
+      currentPage: page,
+      totalPages
+    });
+
+  } catch (err) {
+    console.error(err);
+    res.status(500).send("Server Error");
+  }
+};
+
 
 exports.addmoviepage = async (req, res) => {
-    res.render('addmovie')
+    let search = ""
+    let sorting = ""
+    res.render('addmovie',{search,sorting})
 }
 
 exports.addmovi = async (req, res) => {
@@ -128,7 +168,7 @@ exports.addmovi = async (req, res) => {
 exports.deletemovie = async (req, res) => {
     try {
         let id = req.params.id;
-        console.log(id)
+        
         let movie = await moviemodel.findById(id)
 
         if (!movie) {

@@ -351,13 +351,16 @@
 
       <!-- Search -->
       <form class="d-flex mx-lg-3 my-2 my-lg-0" action="">
+        <input type="hidden" name="sorting" value="<%= sorting %>">
         <div class="input-group">
           <input
             type="search"
+            value="<%=search%>"
             name="search"
             class="form-control form-control-lg"
             placeholder="Search movies by title,genre,director"
             style="min-width: 350px;"
+            
           />
           <button class="btn btn-warning">
             <i class="fa-solid fa-magnifying-glass"></i>
