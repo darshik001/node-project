@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
 
-const blogSchiema = mongoose.Schema({
+const blogSchema = mongoose.Schema({
 name:{
     type:String
 },
@@ -19,10 +19,13 @@ content:{
 authorImage:{
     type:String
 },
+blogImage:{
+    type:String
+},
 date:{
     type:String
 }
 })
 
 
-module.exports = mongoose.model('blogs',blogSchiema)
+module.exports = mongoose.model('blogs',blogSchema)

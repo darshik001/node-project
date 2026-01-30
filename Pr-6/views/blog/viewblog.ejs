@@ -1,39 +1,65 @@
 <%- include('../header')%>
 
-<style>
-input[type="checkbox"] {
-  all: revert !important;
-  appearance: auto !important;
-  -webkit-appearance: checkbox !important;
-  opacity: 1 !important;
-  position: static !important;
-  visibility: visible !important;
-  display: inline-block !important;
-  width: auto !important;
-  height: auto !important;
-}
+    <style>
+        .check-label input,
+        input {
+            display: none;
+            /* hide checkbox */
+        }
 
-input[type=checkbox] {
-  opacity: 0;
-  position: absolute;
-}
+        .check-label small {
+            display: inline-block;
 
-</style>
+            background-color: #e0e0e0;
+            color: #000;
+            border-radius: 10px;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        /* when checkbox is checked */
+        .check-label input:checked+small {
+            background-color: #28a745;
+            color: #fff;
+        }
+    </style>
+
     <div class="page-wrapper">
         <!-- ============================================================== -->
         <!-- Bread crumb and right sidebar toggle -->
         <!-- ============================================================== -->
         <div class="page-breadcrumb">
             <div class="row">
-                <div class="col-12 d-flex">
+                <div class="col-12 d-flex mb-3">
                     <h4 class="page-title">Blogs</h4>
-                   
+
                     <div class="mx-auto">
-                        <form action="">
 
 
+
+                        <form method="GET" id="categoryForm">
+                            <% const selected=category || []; %>
+
+                                <% ['Technology','Programming','Travel','Food','Education','Business'].forEach(cat=> {
+                                    %>
+                                    <label class="check-label ms-3">
+                                        <input type="checkbox" name="category" value="<%= cat %>"
+                                            <%=selected.includes(cat) ? 'checked' : '' %>
+                                        >
+                                        <small class="p-2">
+                                            <%= cat %>
+                                        </small>
+                                    </label>
+                                    <% }) %>
+
+
+                                        <button class="btn btn-outline-danger  rounded-4" onclick="clearAndSubmit()">
+                                            <i class="fas fa-times"></i>
+                                        </button>
                         </form>
+
                     </div>
+
                     <div class="ml-auto text-right">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
@@ -55,59 +81,188 @@ input[type=checkbox] {
             <!-- ============================================================== -->
             <!-- Start Page Content -->
             <!-- ============================================================== -->
+
             <div class="row">
-               
+
+
+
                 <%blogs.forEach((blog)=>{%>
- <div class="col-6 col-md-4 col-lg-3">
-                <div class="card">
-                <img class="card-img-top" src="<%=blog.authorImage%>" alt="Title" />
-                <div class="card-body">
-                    <h4 class="card-title text-center"><%=blog.title%></h4>
-                    <p class="card-text">Author : <%=blog.name%></p>
-                    <p class="card-text">Category : <%=blog.category%></p>
-                    <p class="card-text">Status : <%=blog.status%></p>
-                    <p class="card-text">Date : <%=blog.date%></p>
-                    <p class="card-text">Content : <%= blog.content.length > 50 ? blog.content.substring(0, 50) : blog.content %>
-                    
-                    <% if (blog.content.length > 50) { %>
-                     <a href="/blog/<%= blog.slug %>" class="text-decoration-none">...</a>
-                    <% } %>
-                    </p>
-                </div>
-                <div class="card-footer text-center">
-                    <a href="/blog/view-blog/<%=blog.id%>" class="btn btn-outline-success">view blog</a>
-                </div>
-             </div>
-             </div>
-                <%})%>
-            
-             
+                    <div class="col-12 col-sm-6 col-md-4 col-lg-3 mb-4">
+                        <div class="blog-card-container">
+                            <div class="card h-100 border-0 overflow-hidden rounded-4 shadow-lg position-relative">
+
+
+                                <div
+                                    class="card-img-container position-relative overflow-hidden rounded-4 rounded-bottom-0">
+                                    <img class="card-img-top" src="<%=blog.blogImage%>" alt="<%=blog.title%>"
+                                        height="200px" />
+                                    <div class="image-overlay"></div>
+
+
+                                </div>
+
+                                <div class="card-body p-2">
+                                    <h5 class="card-title fw-bold text-dark mb-3 text-center"
+                                        style="font-size: 1.1rem;">
+                                        <i class="fas fa-quote-left text-primary me-2" style="font-size: 0.8rem;"></i>
+                                        <%=blog.title.length> 45 ? blog.title.substring(0, 45) + '...' : blog.title%>
+                                            <i class="fas fa-quote-right text-primary ms-2"
+                                                style="font-size: 0.8rem;"></i>
+                                    </h5>
+
+                                    <div class=" d-flex align-items-center mb-3 p-3 rounded-3"
+                                        style="background: linear-gradient(135deg, rgba(40, 167, 69, 0.05), rgba(32, 201, 151, 0.05));">
+                                        <div class="me-2">
+                                            <i class="fas fa-user text-primary"></i>
+                                        </div>
+                                        <div class="ms-2">
+                                            <span class="fw-semibold text-dark">
+                                                <%=blog.name%>
+                                            </span>
+                                        </div>
+                                    </div>
+
+                                    <div class="row g-2 mb-3">
+                                        <div class="col-6">
+                                            <div class="d-flex align-items-center p-2 rounded-3"
+                                                style="background-color: #f8f9fa;">
+                                                <i class="fas fa-clock text-primary me-2"></i>
+                                                <div>
+                                                    <span class="fw-medium">
+                                                        <%=blog.category%>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="col-6">
+                                            <div class="meta-item d-flex align-items-center p-2 rounded-3"
+                                                style="background-color: #f8f9fa;">
+                                                <i class="fas fa-calendar-alt text-primary me-2"></i>
+                                                <div>
+                                                    <span class="fw-medium">
+                                                        <%=blog.date%>
+                                                    </span>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+
+                                    <div class="content-preview mb-3">
+                                        <div class="d-flex align-items-start">
+                                            <i class="fas fa-align-left text-muted mt-1 me-2"></i>
+                                            <div>
+                                                <p class="text-muted mb-2" style="line-height: 1.6; font-size: 0.9rem;">
+                                                    <%= blog.content.length> 30 ? blog.content.substring(0, 30) + '...'
+                                                        : blog.content %>
+                                                </p>
+
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="card-footer  border-top-0 pt-0 px-4 pb-4">
+                                    <a href="/blog/view-blog/<%=blog.id%>"
+                                        class="btn btn-primary w-100 rounded-pill py-3 shadow-sm d-flex align-items-center justify-content-center position-relative overflow-hidden">
+                                        <span class="btn-text" style="margin-right: 10px;">Read Full Article</span>
+                                        <i class="fas fa-arrow-right ms-2 b"></i>
+                                        <div class="btn-overlay"></div>
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <%})%>
+
+
 
             </div>
 
-            <!-- ============================================================== -->
-            <!-- End PAge Content -->
-            <!-- ============================================================== -->
-            <!-- ============================================================== -->
-            <!-- Right sidebar -->
-            <!-- ============================================================== -->
-            <!-- .right-sidebar -->
-            <!-- ============================================================== -->
-            <!-- End Right sidebar -->
-            <!-- ============================================================== -->
+            <%if(blogs.length<=0){%>
+                <h2 class="text-center mt-5 pt-5">Blogs Not Found</h2>
+                <%}%>
+
+
+                    <% let categoryQuery='' ; if (category && category.length) { categoryQuery=category.map(c=>
+                        `&category=${c}`).join('');
+                        }
+                        %>
+
+                        <div class="d-flex justify-content-center">
+                            <nav aria-label="Page navigation">
+                                <ul class="pagination">
+
+                                    <li class="page-item <%= currntpage == 1 ? 'disabled' : '' %>">
+                                        <a class="page-link"
+                                            href="?page=<%= currntpage - 1 %>&search=<%= search %><%= categoryQuery %>">
+                                            &laquo;
+                                        </a>
+                                    </li>
+
+                                    <% for(let i=1; i <=totalPages; i++) { %>
+                                        <li class="page-item <%= currntpage == i ? 'active' : '' %>">
+                                            <a class="page-link"
+                                                href="?page=<%= i %>&search=<%= search %><%= categoryQuery %>">
+                                                <%= i %>
+                                            </a>
+                                        </li>
+                                        <% } %>
+
+                                            <li class="page-item <%= currntpage == totalPages ? 'disabled' : '' %>">
+                                                <a class="page-link"
+                                                    href="?page=<%= currntpage + 1 %>&search=<%= search %><%= categoryQuery %>">
+                                                    &raquo;
+                                                </a>
+                                            </li>
+
+                                </ul>
+                            </nav>
+                        </div>
+
+
+                        <!-- ============================================================== -->
+                        <!-- End PAge Content -->
+                        <!-- ============================================================== -->
+                        <!-- ============================================================== -->
+                        <!-- Right sidebar -->
+                        <!-- ============================================================== -->
+                        <!-- .right-sidebar -->
+                        <!-- ============================================================== -->
+                        <!-- End Right sidebar -->
+                        <!-- ============================================================== -->
         </div>
         <!-- ============================================================== -->
         <!-- End Container fluid  -->
         <!-- ============================================================== -->
-       
+
 
     </div>
-        <!-- ============================================================== -->
-        <!-- footer -->
-        <!-- ============================================================== -->
-    
-        <%- include('../footer')%>
-    
+    <!-- ============================================================== -->
+    <!-- footer -->
+    <!-- ============================================================== -->
+
+    <%- include('../footer')%>
+        <script>
+            document.querySelectorAll('#categoryForm input[type="checkbox"]')
+                .forEach(cb => {
+                    cb.addEventListener('change', () => {
+                        document.getElementById('categoryForm').submit();
+                    });
+                });
+
+            function clearAndSubmit() {
+                document.querySelectorAll('#categoryForm input[type="checkbox"]')
+                    .forEach(cb => cb.checked = false);
+
+
+
+                document.getElementById('categoryForm').submit();
+            }
+        </script>
+
+
         <!-- ============================================================== -->
         <!-- End footer -->
         <!-- ============================================================== -->

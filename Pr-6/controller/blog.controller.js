@@ -7,43 +7,70 @@ exports.addblogpage = async(req,res)=>{
         res.render('blog/addblog')
     } catch (error) {
         console.log(error)
-        res.redired('/')
+        res.redirect('/')
     }
 }
 
 
-exports.addblog = async(req,res)=>{
-    try {
-        let imagepath="";
-        if(req.file){
-       imagepath = `/uploads/${req.file.filename}`
-        }
-        
-        await blogmodle.create({
-            ...req.body,
-            authorImage:imagepath,
-            date:currntdate()
-        })
-        res.redirect('/')
-    } catch (error) {
-        console.log(error)
-        res.redirect('/')
+exports.addblog = async (req, res) => {
+  try {
+    let authorImage = ""
+    let blogImage = ""
+
+    console.log(req.files)
+
+    if (req.files.authorImage) {
+      authorImage = `/uploads/${req.files.authorImage[0].filename}`
     }
+
+    if (req.files.blogImage) {
+      blogImage = `/uploads/${req.files.blogImage[0].filename}`
+    }
+
+    await blogmodle.create({
+      ...req.body,
+      authorImage,
+      blogImage,
+      date: currntdate()
+    })
+
+    res.redirect('/')
+  } catch (error) {
+    console.log(error)
+    res.redirect('/')
+  }
 }
+
 
 
 
 exports.viewblogpage = async(req,res)=>{
     try {
         let search = req.query.search || ""
+       let category = req.query.category || [];
+    
+       let page = parseInt(req.query.page) || 1;
+    if (!Array.isArray(category)) {
+      category = [category];
+    }
         let filter = {
   $or: [
     { name: { $regex: search, $options: "i" } },
     { title: { $regex: search, $options: "i" } },
   ]
 };
-        let blogs = await blogmodle.find(filter)
-        res.render('blog/viewblog',{blogs})
+
+if (category.length > 0) {
+      filter.category = { $in: category };
+    }
+    //pagination
+    const limit = 4;                
+    const skip = (page - 1) * limit;
+    const totalblog = await blogmodle.countDocuments(filter);
+    const totalPages = Math.ceil(totalblog / limit);
+
+    let blogs = await blogmodle.find(filter).skip(skip).limit(limit)
+        res.render('blog/viewblog',{blogs,category,search,currntpage:page,totalPages})
     } catch (error) {
         console.log(error)
         res.redirect('/')
@@ -53,7 +80,7 @@ exports.viewblogpage = async(req,res)=>{
 exports.singleviewblogpage = async(req,res)=>{
     try {
         const id = req.params.id;
-        console.log(id)
+       
         let blog = await blogmodle.findById(id)
         res.render('blog/singleviewblog',{blog})
         
@@ -97,21 +124,26 @@ exports.updateblog = async(req,res)=>{
     try {
         let id  = req.params.id
         let blog  =await blogmodle.findById(id)
-        let imagepath = blog.authorImage 
-        console.log(imagepath)
-        if(req.file){
-            if(imagepath !== ""){
+        let authorImage = blog.authorImage       
+        let blogImage = blog.blogImage 
 
-                let imageurl = path.join(__dirname,"..",imagepath)
-                await fs.unlinkSync(imageurl)
-            }
-            
-            imagepath = `/uploads/${req.file.filename}`
+      if(req.files.authorImage){
+        if(authorImage !==""){
+            let imagepath = path.join(__dirname,"..",authorImage)
+            await fs.unlinkSync(imagepath)
         }
+        authorImage = `/uploads/${req.files.authorImage[0].filename}`
+      }
 
-      
+        if(req.files.blogImage){
+        if(blogImage !==""){
+            let imagepath = path.join(__dirname,"..",blogImage)
+            await fs.unlinkSync(imagepath)
+        }
+        blogImage = `/uploads/${req.files.blogImage[0].filename}`
+      }
 
-        await blogmodle.findByIdAndUpdate(id,{...req.body,authorImage:imagepath},{new:true})
+        await blogmodle.findByIdAndUpdate(id,{...req.body,authorImage,blogImage},{new:true})
     res.redirect(`/blog/view-blog/${id}`)
 
     } catch (error) {

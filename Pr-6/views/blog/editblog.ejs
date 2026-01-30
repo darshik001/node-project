@@ -8,7 +8,7 @@
         <div class="page-breadcrumb">
             <div class="row">
                 <div class="col-12 d-flex no-block align-items-center">
-                    <h4 class="page-title">Add Blog</h4>
+                    <h4 class="page-title">Update Blog</h4>
                     <div class="ml-auto text-right">
                         <nav aria-label="breadcrumb">
                             <ol class="breadcrumb">
@@ -39,14 +39,16 @@
                                     <label class="col-sm-3 text-right control-label col-form-label">Author
                                         name</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="name" value="<%=blog.name%>" placeholder="Author name">
+                                        <input type="text" class="form-control" value="<%=blog.name%>" name="name" placeholder="Author name">
                                     </div>
                                 </div>
+
+                                
 
                                 <div class="form-group row">
                                     <label class="col-sm-3 text-right control-label col-form-label">Title</label>
                                     <div class="col-sm-9">
-                                        <input type="text" class="form-control" name="title" value="<%=blog.title%>" placeholder="Blog Title">
+                                        <input type="text" class="form-control" value="<%=blog.title%>" name="title" placeholder="Blog Title">
                                     </div>
                                 </div>
 
@@ -54,13 +56,13 @@
                                     <label for="fname" class="col-sm-3 text-right control-label col-form-label">Category</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" name="category">
-                                            <option value="">select Category</option>
-                                            <option <%= blog.category =='Technology'?'selected':''%> value="Technology">Technology</option>
-                                            <option <%= blog.category =='Programming'?'selected':''%> value="Programming">Programming</option>
-                                            <option <%= blog.category =='Travel'?'selected':''%> value="Travel">Travel</option>
-                                            <option <%= blog.category =='Food'?'selected':''%> value="Food">Food</option>
-                                            <option <%= blog.category =='Education'?'selected':''%> value="Education">Education</option>
-                                            <option <%= blog.category =='Business'?'selected':''%> value="Business">Business</option>
+                                            <option  value="">select Category</option>
+                                            <option <%=blog.category=="Technology"?'selected':''%> value="Technology">Technology</option>
+                                            <option <%=blog.category=="Programming"?'selected':''%> value="Programming">Programming</option>
+                                            <option <%=blog.category=="Travel"?'selected':''%> value="Travel">Travel</option>
+                                            <option <%=blog.category=="Food"?'selected':''%> value="Food">Food</option>
+                                            <option <%=blog.category=="Education"?'selected':''%> value="Education">Education</option>
+                                            <option <%=blog.category=="Business"?'selected':''%> value="Business">Business</option>
                                         </select>
                                     </div>
                                 </div>
@@ -69,8 +71,9 @@
                                     <label class="col-sm-3 text-right control-label col-form-label">status</label>
                                     <div class="col-sm-9">
                                         <select class="form-control" name="status">
-                                            <option <%= blog.status =='Draft'?'selected':''%> value="Draft">Draft</option>
-                                            <option <%= blog.status =='Published'?'selected':''%> value="Published">Published</option>
+                                            <option value="">select status</option>
+                                            <option <%=blog.status=="Draft"?'selected':''%> value="Draft">Draft</option>
+                                            <option <%=blog.status=="Published"?'selected':''%> value="Published">Published</option>
                                         </select>
                                     </div>
                                 </div>
@@ -82,24 +85,34 @@
                                     </div>
                                 </div>
 
-
-
-                                <div class="form-group row">
+                               
+                                 <div class="form-group row">
                                     <label class="col-sm-3 text-right control-label col-form-label">Author Image</label>
-                                    <div class="col-md-9">
-                                        <div class="custom-file mb-3">
+                                    <div class="col-md-3">
+                                        <div class="custom-file">
                                             <input type="file" class="custom-file-input" name="authorImage">
                                             <label class="custom-file-label">Choose file...</label>
-                                            <small class="text-danger">* Change  Image Then Choose Image *</small>
                                         </div>
-                                        <img src="<%=blog.authorImage%>" alt="" width="100px" height="150px">
+                                        <img src="<%=blog.authorImage%>" alt="author Image" width="100" height="100">
+                                    </div>
+
+                                    <label class="col-sm-3 text-right control-label col-form-label">Blog Image</label>
+                                    <div class="col-md-3">
+                                        <div class="custom-file">
+                                            <input type="file" class="custom-file-input" name="blogImage">
+                                            <label class="custom-file-label">Choose file...</label>
+                                        </div>
+                                        <img src="<%=blog.blogImage%>" alt="Blog Image" width="100" height="100">
+
                                     </div>
                                 </div>
+
+                              
 
                             </div>
                             <div class="border-top">
                                 <div class="card-body text-center">
-                                    <button type="submit" class="btn btn-primary">update Blog</button>
+                                    <button type="submit" class="btn btn-primary">Update Blog</button>
                                 </div>
                             </div>
                         </form>
