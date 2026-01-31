@@ -6,5 +6,6 @@ routes.get('/',deshborad)
 
 // sub routes 
 routes.use('/blog',require('./blog.routes'))
+routes.use('/admin',require('./admin.routes'))
 
 module.exports = routes
