@@ -6,7 +6,7 @@ exports.addblogpage = async(req,res)=>{
     try {
         res.render('blog/addblog')
     } catch (error) {
-        console.log(error)
+        req.flash('error',`${error.message}`)
         res.redirect('/')
     }
 }
@@ -33,10 +33,11 @@ exports.addblog = async (req, res) => {
       blogImage,
       date: currntdate()
     })
+       req.flash('success','Blog Added Success')
 
     res.redirect('/')
   } catch (error) {
-    console.log(error)
+    req.flash('error',`${error.message}`)
     res.redirect('/')
   }
 }
@@ -72,7 +73,7 @@ if (category.length > 0) {
     let blogs = await blogmodle.find(filter).skip(skip).limit(limit)
         res.render('blog/viewblog',{blogs,category,search,currntpage:page,totalPages})
     } catch (error) {
-        console.log(error)
+        req.flash('error',`${error.message}`)
         res.redirect('/')
     }
 }
@@ -80,13 +81,12 @@ if (category.length > 0) {
 exports.singleviewblogpage = async(req,res)=>{
     try {
         const id = req.params.id;
-       
         let blog = await blogmodle.findById(id)
         res.render('blog/singleviewblog',{blog})
         
       
     } catch (error) {
-        console.log(error)
+        req.flash('error',`${error.message}`)
         res.redirect('/')
     }
 }
@@ -95,12 +95,12 @@ exports.singleviewblogpage = async(req,res)=>{
 exports.deleteblog = async(req,res)=>{
     try {
         const id = req.params.id;
-       
          await blogmodle.findByIdAndDelete(id)
         res.redirect('/blog/view-blog')
         
     } catch (error) {
-        console.log(error)
+        
+       req.flash('error',`${error.message}`)
         res.redirect('/')
     }
 }
@@ -115,6 +115,7 @@ exports.editblog = async(req,res)=>{
         
     } catch (error) {
         console.log(error)
+       req.flash('error',`${error.message}`)
         res.redirect('/')
     }
 }
@@ -144,10 +145,13 @@ exports.updateblog = async(req,res)=>{
       }
 
         await blogmodle.findByIdAndUpdate(id,{...req.body,authorImage,blogImage},{new:true})
+       req.flash('success','Blog Updated Success')
+
     res.redirect(`/blog/view-blog/${id}`)
 
     } catch (error) {
         console.log(error)
+        req.flash('error',`${error.message}`)
         res.redirect('/blog/view-blog')
     }
 }

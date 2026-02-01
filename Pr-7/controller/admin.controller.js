@@ -20,10 +20,11 @@ exports.addAdmin= async(req,res)=>{
         profileImage
     })
 
-    console.log(admin)
+        req.flash('success','Admin Added Success')
+    
     res.redirect('/admin/view-admin')
    } catch (error) {
-    console.log(error)
+    req.flash('error',`${error.message}`)
     res.redirect('/')
    }
 }
@@ -34,7 +35,7 @@ exports.viewAdminPage = async(req,res)=>{
         let admins = await adminModel.find()
         res.render('admin/viewAdmin',{admins})
     } catch (error) {
-        console.log(error)
+        req.flash('error',`${error.message}`)
         res.redirect('/')
     }
 }
@@ -50,9 +51,10 @@ exports.deleteAdmin = async(req,res)=>{
         }
 
         await adminModel.findByIdAndDelete(id)
+        req.flash('warning','Admin Deleted')
         res.redirect('/admin/view-admin')
     } catch (error) {
-        console.log(error)
+        req.flash('error',`${error.message}`)
         res.redirect('/')
     }
 }
@@ -78,9 +80,10 @@ exports.updateAdmin = async(req,res)=>{
         }
 
        await adminModel.findByIdAndUpdate(id,{...req.body,profileImage},{new:true})
+       req.flash('success','Admin Updated')
        res.redirect('/admin/view-admin')
     } catch (error) {
-        console.log(error)
+        req.flash('error',`${error.message}`)
         res.redirect('/')
     }
 }

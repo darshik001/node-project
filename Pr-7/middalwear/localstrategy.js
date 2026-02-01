@@ -33,4 +33,20 @@ passport.deserializeUser(async(id,cb)=>{
 })
 
 
+passport.checkAuthentication = (req,res,next)=>{
+
+    if(req.isAuthenticated()){
+        return next()
+    }
+
+    return res.redirect('/user/login')
+}
+
+passport.isAuthenticated = (req,res,next)=>{
+    if(req.isAuthenticated()){
+        res.locals.user = req.user
+    }
+    return next()
+}
+
 module.exports = passport
