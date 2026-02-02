@@ -29,3 +29,8 @@ exports.logOut = async(req,res)=>{
         res.redirect('/')
     }
 }
+
+
+exports.profilePage = (req,res)=>{
+    res.render('profile')
+}
