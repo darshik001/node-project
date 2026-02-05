@@ -1,6 +1,7 @@
 const express = require('express')
 const { addblogpage, addblog, viewblogpage, singleviewblogpage, deleteblog, editblog, updateblog } = require('../controller/blog.controller')
 const upload = require('../middalwear/imageUpload')
+const passport = require('passport')
 const routes = express.Router()
 
 routes.get('/add-blog',addblogpage)
@@ -11,4 +12,4 @@ routes.get('/delete-blog/:id',deleteblog)
 routes.get('/edit-blog/:id',editblog)
 routes.post('/update-blog/:id',upload.fields([{name:'authorImage',maxCount:1},{name:'blogImage',maxCount:1}]),updateblog)
 
-module.exports = routes
+module.exports = routes 

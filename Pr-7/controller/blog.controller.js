@@ -95,7 +95,19 @@ exports.singleviewblogpage = async(req,res)=>{
 exports.deleteblog = async(req,res)=>{
     try {
         const id = req.params.id;
+        let blog =  await blogmodle.findById(id) 
+        let blogimagepath = blog.blogImage
+        let authimagepath = blog.authorImage
+        if(blogimagepath !==""){
+            let deleteblogpath = path.join(__dirname,'..',blogimagepath)
+            await fs.unlinkSync(deleteblogpath)
+        }
+        if(authimagepath !== ""){
+            let deleteauthorpath = path.join(__dirname,'..',authimagepath)
+            await fs.unlinkSync(deleteauthorpath)
+        }
          await blogmodle.findByIdAndDelete(id)
+         req.flash('success','Blog Deleted')
         res.redirect('/blog/view-blog')
         
     } catch (error) {
@@ -146,7 +158,6 @@ exports.updateblog = async(req,res)=>{
 
         await blogmodle.findByIdAndUpdate(id,{...req.body,authorImage,blogImage},{new:true})
        req.flash('success','Blog Updated Success')
-
     res.redirect(`/blog/view-blog/${id}`)
 
     } catch (error) {

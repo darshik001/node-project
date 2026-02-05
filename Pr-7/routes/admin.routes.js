@@ -1,6 +1,7 @@
 const express = require('express')
 const { addAdminPage, addAdmin, viewAdminPage, deleteAdmin, editAdminPage, updateAdmin } = require('../controller/admin.controller')
 const upload = require('../middalwear/imageUpload')
+const passport = require('passport')
 const route = express.Router()
 
 route.get('/add-admin',addAdminPage)

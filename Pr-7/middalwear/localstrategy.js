@@ -44,7 +44,7 @@ passport.checkAuthentication = (req,res,next)=>{
 
 passport.isAuthenticated = (req,res,next)=>{
     if(req.isAuthenticated()){
-        res.locals.user = req.user
+      res.locals.user = req.user
     }
     return next()
 }

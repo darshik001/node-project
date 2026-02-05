@@ -6,7 +6,9 @@ const routes = express.Router()
 routes.get('/',passport.checkAuthentication, deshborad)
 
 // sub routes 
+// routes.use('/blog',require('./blog.routes'))
 routes.use('/blog',passport.checkAuthentication,require('./blog.routes'))
+// routes.use('/admin',require('./admin.routes'))
 routes.use('/admin',passport.checkAuthentication,require('./admin.routes'))
 routes.use('/user',require('./auth.routes'))
 module.exports = routes 
